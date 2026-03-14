@@ -1,0 +1,22 @@
+{
+    "name": "spring-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "fix": "prettier --plugin=@prettier/plugin-xml --write -- pom.xml package.json"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.31.0",
+    "devDependencies": {
+        "@prettier/plugin-xml": "^3.4.2",
+        "prettier": "^3.8.1"
+    },
+    "prettier": {
+        "xmlWhitespaceSensitivity": "ignore",
+        "tabWidth": 4
+    }
+}
