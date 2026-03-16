@@ -33,6 +33,37 @@
     <properties>
         <java.version>21</java.version>
     </properties>
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <test />
+                <checkstyle.includes />
+                <spotbugs.includeFilterFiles />
+            </properties>
+        </profile>
+        <profile>
+            <id>domain</id>
+            <activation>
+                <property>
+                    <name>domain</name>
+                </property>
+            </activation>
+            <properties>
+                <domain />
+                <test>**/domains/${domain}/**/*Test</test>
+                <checkstyle.includes>
+                    **/domains/${domain}/**/*.java
+                </checkstyle.includes>
+                <spotbugs.includeFilterFiles>
+                    ${project.basedir}/target/config/spotbugs/spotbugs-include.xml
+                </spotbugs.includeFilterFiles>
+            </properties>
+        </profile>
+    </profiles>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -188,5 +219,17 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/config/spotbugs</directory>
+                <filtering>true</filtering>
+                <targetPath>
+                    ${project.basedir}/target/config/spotbugs
+                </targetPath>
+            </resource>
+        </resources>
     </build>
 </project>
